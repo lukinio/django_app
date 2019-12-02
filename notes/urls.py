@@ -1,8 +1,9 @@
 from django.conf.urls import url
-
-from notes.views import NoteListView, NoteDetailView
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    url(r'^$', NoteListView.as_view(), name='note-list'),
-    url(r'^(?P<pk>\d+)/$', NoteDetailView.as_view(), name='note-detail'),
+    path('', views.NoteListView.as_view(), name='note-list'),
+    path('<int:pk>/', views.NoteDetailView.as_view(), name='note-detail'),
+    path('create/', views.CreateNote.as_view(), name='create-note'),
 ]
