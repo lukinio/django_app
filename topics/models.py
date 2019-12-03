@@ -1,3 +1,6 @@
 from django.db import models
 
-# Create your models here.
+from django_extensions.db.models import TitleSlugDescriptionModel, TimeStampedModel
+
+class Topic(TitleSlugDescriptionModel, TimeStampedModel):
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE)
