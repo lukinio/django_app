@@ -1,7 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView
-from notes.models import Note
+from django.urls import reverse_lazy
+from django.views.generic.edit import FormView
+from .models import Note
+from .forms import NoteCreateForm
 
 
 class NoteListView(ListView):
@@ -10,6 +13,12 @@ class NoteListView(ListView):
 class NoteDetailView(DetailView):
     model = Note
 
-class CreateNote(LoginRequiredMixin, CreateView):
-    model = Note
-    fields = ['title', 'body', 'created_by']
+class NoteCreateView(LoginRequiredMixin, CreateView):
+    template_name = 'notes/note_add_form.html'
+    form_class = NoteCreateForm
+
+    def form_valid(self, form):
+        form.instance.created_by = self.request.user
+        form.save()
+        print(form.cleaned_data)
+        return super().form_valid(form)

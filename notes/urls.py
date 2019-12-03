@@ -1,9 +1,10 @@
 from django.conf.urls import url
 from django.urls import path
-from . import views
+from notes import views
 
+app_name='notes'
 urlpatterns = [
     path('', views.NoteListView.as_view(), name='note-list'),
     path('<int:pk>/', views.NoteDetailView.as_view(), name='note-detail'),
-    path('create/', views.CreateNote.as_view(), name='create-note'),
+    path('add/', views.NoteCreateView.as_view(), name='note-add'),
 ]

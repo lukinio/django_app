@@ -3,7 +3,7 @@
 {% block content %}
 <ul>
 {% for note in object_list %}
-    <li><a href="{% url 'note-detail' note.pk %}">{{ note.title }}</a></li>
+    <li><a href="{% url 'notes:note-detail' note.pk %}">{{ note.title }}</a></li>
 {% empty %}
     <li>No notes yet.</li>
 {% endfor %}

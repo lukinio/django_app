@@ -3,7 +3,7 @@
 {% load crispy_forms_tags %}
 
 {% block content %}
-  <form method="post" novalidate>
+  <form method="post" action="" novalidate>
     {% csrf_token %}
     {{ form.title|as_crispy_field }}
     {{ form.body|as_crispy_field }}
