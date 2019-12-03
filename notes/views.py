@@ -1,10 +1,11 @@
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import ListView, DetailView, CreateView, UpdateView
-from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.views.generic.edit import FormView
 from .models import Note
-from .forms import NoteCreateForm, NoteUpdateForm
+from .forms import NoteCreateForm, NoteUpdateForm, NoteDeleteForm
+
+from django.urls import reverse_lazy
 
 
 class NoteListView(ListView):
@@ -29,7 +30,7 @@ class NoteUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = NoteUpdateForm
 
     def test_func(self):
-        return self.request.is_superuser or self.object.created_by == self.request.user
+        return self.object.created_by == self.request.user
 
     def get_object(self):
         pk_ = self.kwargs.get("pk")
@@ -39,3 +40,16 @@ class NoteUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
         form.instance.created_by = self.request.user
         form.save()
         return super().form_valid(form)
+
+class NoteDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    form_class = NoteDeleteForm
+
+    def test_func(self):
+        return self.request.user.is_superuser or self.object.created_by == self.request.user
+
+    def get_object(self):
+        pk_ = self.kwargs.get("pk")
+        return get_object_or_404(Note, pk=pk_)
+
+    def get_success_url(self):
+        return reverse_lazy('notes:note-list')

@@ -15,7 +15,7 @@
 </div>
 <div class="col-4">
     <div class="row justify-content-center">
-        <a class="badge badge-pill badge-danger" href="{% url 'notes:note-list' %}">Delete</a>
+        <a class="badge badge-pill badge-danger" href="{% url 'notes:note-delete' note.pk %}">Delete</a>
     </div>
 </div>
 {% endblock %}
