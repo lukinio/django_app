@@ -2,6 +2,19 @@
 
 {% load crispy_forms_tags %}
 
+{% block menu %}
+<div class="col-6">
+    <div class="row justify-content-center">
+      <a class="badge badge-pill badge-dark" href="{% url 'notes:note-add' %}">Add Note</a>
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="row justify-content-center">
+      <a class="badge badge-pill badge-dark" href="{% url 'notes:note-list' %}">See Notes</a>
+    </div>
+</div>
+{% endblock %}
+
 {% block content %}
   <form method="post" action="" novalidate>
     {% csrf_token %}

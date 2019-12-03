@@ -1,10 +1,10 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 from django.urls import reverse_lazy
 from django.views.generic.edit import FormView
 from .models import Note
-from .forms import NoteCreateForm
+from .forms import NoteCreateForm, NoteUpdateForm
 
 
 class NoteListView(ListView):
@@ -22,3 +22,8 @@ class NoteCreateView(LoginRequiredMixin, CreateView):
         form.save()
         print(form.cleaned_data)
         return super().form_valid(form)
+
+class NoteUpdateView(LoginRequiredMixin, UpdateView):
+    template_name = 'notes/note_update_form.html'
+    form_class = NoteUpdateForm
+

@@ -1,4 +1,33 @@
-<a href="{% url 'notes:note-list' %}">Back to Notes</a>
-<h1>{{ note.title }}</h1>
-<p>{{ note.body }}</p>
-<p>{{ note.created_by }}</p>
+{% extends 'base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block menu %}
+<div class="col-4">
+    <div class="row justify-content-center">
+        <a class="badge badge-pill badge-primary" href="{% url 'notes:note-list' %}">Back to Notes</a>
+    </div>
+</div>
+<div class="col-4">
+    <div class="row justify-content-center">
+        <a class="badge badge-pill badge-success" href="{% url 'notes:note-list' %}">Update</a>
+    </div>
+</div>
+<div class="col-4">
+    <div class="row justify-content-center">
+        <a class="badge badge-pill badge-danger" href="{% url 'notes:note-list' %}">Delete</a>
+    </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+      <div class="col-6">
+          <h1>{{ note.title }}</h1>
+          <p>{{ note.body }}</p>
+          <p>{{ note.created_by }}</p>
+      </div>
+  </div>
+</div>
+{% endblock %}
