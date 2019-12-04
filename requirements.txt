@@ -1,0 +1,4 @@
+django==3.0
+django-extensions==2.2.5
+django-mptt==0.9.1
+django-mptt-admin==0.7.2
