@@ -18,6 +18,7 @@
 {% block content %}
   <form action="." method="POST">
     {% csrf_token %}
+    {{ form.topic }}
     {{ form.title|as_crispy_field }}
     {{ form.body|as_crispy_field }}
     <button type="submit" class="btn btn-success">Save note</button>

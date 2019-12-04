@@ -1,0 +1,20 @@
+{% extends 'core/coreBase.html' %}
+{% load mptt_tags %}
+{% load crispy_forms_tags %}
+
+
+
+{% block content %}
+<form action="." method="POST">
+    {% csrf_token %}
+    {{ form.title | as_crispy_field }}
+    {{ form.parent | as_crispy_field }}
+    <button type="submit" class="btn btn-success">Create Topic</button>
+  </form>
+  {% endblock %}
+
+{% block side_menu %}
+    <li>
+        <a href="{% url 'topics:topic-list' %}">Back to Topics</a>
+    </li>
+{% endblock %}

@@ -1,12 +1,17 @@
 {% extends 'base.html' %}
 
 {% block menu %}
-<div class="col-6">
+<div class="col-4">
     <div class="row justify-content-center">
       <a class="badge badge-pill badge-dark" href="{% url 'notes:note-add' %}">Add Note</a>
     </div>
-  </div>
-  <div class="col-6">
+</div>
+<div class="col-4">
+    <div class="row justify-content-center">
+      <a class="badge badge-pill badge-success" href="{% url 'topics:topic-list' %}">See Topics</a>
+    </div>
+</div>
+  <div class="col-4">
     <div class="row justify-content-center">
       <a class="badge badge-pill badge-dark" href="{% url 'notes:note-list' %}">See Notes</a>
     </div>

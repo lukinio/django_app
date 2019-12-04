@@ -1,7 +1,6 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import get_object_or_404
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.views.generic.edit import FormView
 from .models import Note
 from .forms import NoteCreateForm, NoteUpdateForm, NoteDeleteForm
 
@@ -30,7 +29,7 @@ class NoteUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     form_class = NoteUpdateForm
 
     def test_func(self):
-        return self.object.created_by == self.request.user
+        return self.get_object().created_by == self.request.user
 
     def get_object(self):
         pk_ = self.kwargs.get("pk")

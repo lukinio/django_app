@@ -1,0 +1,12 @@
+{% extends 'core/coreBase.html' %}
+
+{% load crispy_forms_tags %}
+
+
+{% block content %}
+<form action="." method="POST">
+    {% csrf_token %}
+    {{ form.title|as_crispy_field }}
+    <button type="submit" class="btn btn-success">Change Topic</button>
+  </form>
+  {% endblock %}

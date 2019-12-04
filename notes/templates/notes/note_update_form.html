@@ -5,6 +5,7 @@
 {% block content %}
   <form method="post" action="" novalidate>
     {% csrf_token %}
+    {{ form.topic|as_crispy_field }}
     {{ form.title|as_crispy_field }}
     {{ form.body|as_crispy_field }}
     <button type="submit" class="btn btn-success">Save note</button>

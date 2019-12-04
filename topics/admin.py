@@ -1,3 +1,11 @@
 from django.contrib import admin
 
-# Register your models here.
+from django_mptt_admin.admin import DjangoMpttAdmin
+
+from topics.models import Topic
+
+
+@admin.register(Topic)
+class TopicAdmin(DjangoMpttAdmin):
+    list_display = ['title', 'is_public']
+    list_editable = ['is_public']

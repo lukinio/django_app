@@ -1,0 +1,16 @@
+{% extends "core/coreBase.html" %}
+
+{% block content %}
+    <h1>Add new topic</h1>
+    <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Submit" />
+</form>
+{% endblock %}
+
+{% block side_menu %}
+    <li>
+        <a href="{% url 'topic:topic-list' %}">Back to list</a>
+    </li>
+{% endblock %}
